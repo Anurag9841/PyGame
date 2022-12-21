@@ -1,23 +1,23 @@
-import pygame
+import pygame as pyopengl
 import math
 import random
 from pygame import mixer
 # initialize pygame
-pygame.init()
+pyopengl.init()
 # creating screen
-screen = pygame.display.set_mode((1000, 900))
+screen = pyopengl.display.set_mode((1000, 900))
 # title and screen icon
-pygame.display.set_caption('Space Inveador')
-icon = pygame.image.load('Ufo.png')
-pygame.display.set_icon(icon)
+pyopengl.display.set_caption('Space Inveador')
+icon = pyopengl.image.load('Ufo.png')
+pyopengl.display.set_icon(icon)
 # background_image
-background = pygame.image.load('background.jpg')
+background = pyopengl.image.load('background.jpg')
 mixer.music.load("background.wav")
 mixer.music.play(-1)
 # player_image
-player_img = pygame.image.load('spaceship.png')
+player_img = pyopengl.image.load('spaceship.png')
 # enemy_image
-enemy_img = pygame.image.load('enemy.png')
+enemy_img = pyopengl.image.load('enemy.png')
 enemyX = random.randint(0, 936)
 enemyY = random.randint(50, 150)
 enemyX_change = 0.6
@@ -28,14 +28,14 @@ playerX_change = 0
 playerY_change = 0
 
 # bullet_image
-bullet_img = pygame.image.load('bullet.png')
+bullet_img = pyopengl.image.load('bullet.png')
 bulletX = 0
 bulletY = 600
 bullet_change = 0
 bulletY_change = 4
 bullet_state = "ready"  # ready--> it is the state where u cannot see the bullet at the screen
 score = 0
-font = pygame.font.Font("freesansbold.ttf",32)
+font = pyopengl.font.Font("freesansbold.ttf",32)
 textX = 10
 textY = 10
 def show_score(x,y):
@@ -71,26 +71,26 @@ run = True
 while run:
     screen.fill((0, 0, 0))
     screen.blit(background, (0, 0))
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    for event in pyopengl.event.get():
+        if event.type == pyopengl.QUIT:
             run = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
+        if event.type == pyopengl.KEYDOWN:
+            if event.key == pyopengl.K_RIGHT:
                 playerX_change = 1
-            if event.key == pygame.K_LEFT:
+            if event.key == pyopengl.K_LEFT:
                 playerX_change = -1
             # if event.key == pygame.K_UP:
             #     playerY_change = -0.6
             # if event.key == pygame.K_DOWN:
             #     playerY_change = 0.6
-            if event.key == pygame.K_SPACE:
+            if event.key == pyopengl.K_SPACE:
                 if bullet_state == "ready":
                     bullet_music = mixer.Sound("laser.wav")
                     bullet_music.play()
                     bulletX = playerX
                     bullet(bulletX, bulletY)
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
+        if event.type == pyopengl.KEYUP:
+            if event.key == pyopengl.K_RIGHT or event.key == pyopengl.K_LEFT:
                 playerX_change = 0
         # if event.type == pygame.KEYUP:
         #     if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
@@ -141,4 +141,4 @@ while run:
     player(playerX, playerY)
     enemy(enemyX, enemyY)
     show_score(textX,textY)
-    pygame.display.update()
+    pyopengl.display.update()
